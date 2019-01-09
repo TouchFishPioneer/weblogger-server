@@ -1,9 +1,13 @@
 const Koa = require('koa')
 const app = new Koa()
+const config = require('./config/config')
 
-app.use(async (ctx) => {
-  ctx.body = 'hello world!'
+app.use(async (ctx, next) => {
+  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`)
+  await next()
 })
 
-app.listen(1120)
-console.log(`[START] demo running at port 1120`)
+app.use(require('./api/pin').routes())
+
+app.listen(config.port)
+console.log(`[START] demo running at port ${config.port}`)
