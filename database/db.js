@@ -13,13 +13,13 @@ mongoose.connect(dbURL, error => {
 })
 
 mongoose.connection.on('connected', () => {
-  console.log(chalk.green('MongoDB successfully connected.'))
+  console.log(chalk.green('[SUCCESS] MongoDB successfully connected.'))
 })
 mongoose.connection.on('error', () => {
-  console.log(chalk.red('MongoDB connected error.'))
+  console.log(chalk.red('[ERROR] MongoDB connected error.'))
 })
 mongoose.connection.on('disconnected', () => {
-  console.log(chalk.yellow('MongoDB connected disconnected.'))
+  console.log(chalk.yellow('[WARNING] MongoDB connected disconnected.'))
 })
 
 module.exports = mongoose
