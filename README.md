@@ -2,32 +2,16 @@
 
 The server for WebLogger, which is a deduction system for side-channel attack based on inertial sensor signals.
 
-## QuickStart
+## Introduction
 
 <!-- add docs here for user -->
 
-see [egg docs][egg] for more detail.
+This server end is written by Node.js with pure Koa2. You can just refer to [Koa](https://koajs.com/) for help.
 
 ### Development
 
 ```bash
 $ npm i
 $ npm run dev
-$ open http://localhost:7001/
+$ open http://localhost:1120/
 ```
-
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
-
-[egg]: https://eggjs.org

@@ -1,44 +1,30 @@
 {
   "name": "web-logger-server",
-  "version": "1.0.0",
-  "description": "The server for WebLogger, which is a deduction system for side-channel attack based on inertial sensor signals.",
-  "private": true,
-  "dependencies": {
-    "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
-  },
-  "devDependencies": {
-    "autod": "^3.0.1",
-    "autod-egg": "^1.0.0",
-    "egg-bin": "^4.3.5",
-    "egg-ci": "^1.8.0",
-    "egg-mock": "^3.14.0",
-    "eslint": "^4.11.0",
-    "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0"
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
+  "version": "0.0.2",
+  "description": "The server for WebLogger.",
+  "main": "index.js",
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-web-logger-server",
-    "stop": "egg-scripts stop --title=egg-server-web-logger-server",
-    "dev": "egg-bin dev",
-    "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "egg-bin test",
-    "cov": "egg-bin cov",
-    "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod"
-  },
-  "ci": {
-    "version": "8"
+    "dev": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/wurahara/weblogger-server.git"
   },
   "author": "wurahara",
-  "license": "MIT"
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/wurahara/weblogger-server/issues"
+  },
+  "homepage": "https://github.com/wurahara/weblogger-server#readme",
+  "dependencies": {
+    "koa": "^2.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
 }
