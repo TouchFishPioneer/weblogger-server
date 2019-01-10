@@ -1,9 +1,3 @@
-/**
- * 生成n个k位的PIN，每位数字范围是0～9,均匀分布
- * @param n
- * @param k
- * @returns {Array}
- */
 function getNRandomPins (n, k) {
   if ((n * k) % 10 !== 0) {
     console.error('Invalid parameter! n should be divided by 10')

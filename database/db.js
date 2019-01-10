@@ -1,25 +1,25 @@
-const chalk = require('chalk')
 const mongoose = require('mongoose')
 const config = require('../config/config')
+const log = require('../util/log')
 
 const dbURL = `mongodb://${config.database.host}:${config.database.port}/${config.database.dbname}`
 
-mongoose.connect(dbURL, error => {
+mongoose.connect(dbURL, { useNewUrlParser: true }, error => {
   if (error) {
-    console.log(chalk.red('[ERROR] Database connection error!'), error)
+    log.logParser(3, `Database connection error! ${error}`)
   } else {
-    console.log(chalk.green('[SUCCESS] Database connection success!'))
+    log.logParser(1, `Database connection success!`)
   }
 })
 
 mongoose.connection.on('connected', () => {
-  console.log(chalk.green('[SUCCESS] MongoDB successfully connected.'))
+  log.logParser(1, `MongoDB successfully connected.`)
 })
 mongoose.connection.on('error', () => {
-  console.log(chalk.red('[ERROR] MongoDB connected error.'))
+  log.logParser(3, `MongoDB connection is in error.`)
 })
 mongoose.connection.on('disconnected', () => {
-  console.log(chalk.yellow('[WARNING] MongoDB connected disconnected.'))
+  log.logParser(2, `MongoDB database is disconnected.`)
 })
 
 module.exports = mongoose

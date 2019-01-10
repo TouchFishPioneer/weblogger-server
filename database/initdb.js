@@ -1,32 +1,31 @@
+const PinModel = require('./models/pins')
 const mongoose = require('./db')
 const pinGenerator = require('../util/pin')
-const chalk = require('chalk')
-
-const pinSchema = new mongoose.Schema({
-  time: Date,
-  pins: [String]
-})
+const log = require('../util/log')
 
 let N = 50
 let K = 4
+if (process.argv.length === 4) {
+  N = parseInt(process.argv[2])
+  K = parseInt(process.argv[3])
+}
 let pinArray = pinGenerator.getValidPins(N, K)
 
-const Pin = mongoose.model('Pin', pinSchema, 'pins')
-
-let pin = new Pin({
+let pin = new PinModel({
   time: new Date(),
   pins: pinArray
 })
 
-Pin.deleteMany({}, err => {
+PinModel.deleteMany({}, err => {
   if (err) {
-    console.log(chalk.red(`[ERROR] Error occurs in dropping old collection of pins, ${err}`))
+    log.logParser(3, `Error occurs in dropping old collection of pins, ${err}`)
   } else {
     pin.save((err, res) => {
       if (err) {
-        console.log(chalk.red(`[ERROR] Error occurs in insert new pins into database, ${err}`))
+        log.logParser(3, `Error occurs in insert new pins into database, ${err}`)
       } else {
-        console.log(res)
+        log.logParser(1, `${res.pins.length} pins have been inserted into the database.`)
+        mongoose.disconnect()
       }
     })
   }
