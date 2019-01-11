@@ -12,6 +12,6 @@ This server end is written by Node.js with pure Koa2. You can just refer to [Koa
 
 ```bash
 $ npm i
-$ npm run dev
+$ npm run start
 $ open http://localhost:1120/
 ```

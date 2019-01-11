@@ -1,6 +1,10 @@
 const Koa = require('koa')
 const app = new Koa()
+const cors = require('koa2-cors')
+
 const config = require('./config/config')
+
+app.use(cors())
 
 app.use(async (ctx, next) => {
   console.log(`Process ${ctx.request.method} ${ctx.request.url}...`)
