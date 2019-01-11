@@ -6,7 +6,7 @@ router.get('/pin', async (ctx, next) => {
 
   ctx.response.type = 'json'
   ctx.response.body = {
-    code: '200',
+    code: 200,
     data: {
       pins: pins[0].pins
     }
