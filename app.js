@@ -3,6 +3,7 @@ const app = new Koa()
 const cors = require('koa2-cors')
 
 const config = require('./config/config')
+const sensor = require('./api/sensor')
 
 app.use(cors())
 
@@ -13,5 +14,7 @@ app.use(async (ctx, next) => {
 
 app.use(require('./api/pin').routes())
 
-app.listen(config.port)
+let server = app.listen(config.port, () => {
+  sensor(server)
+})
 console.log(`[START] demo running at port ${config.port}`)
