@@ -1,12 +1,10 @@
-const ws = require('ws')
-const WebSocketServer = ws.Server
+const io = require('socket.io')
 
 function sensorDataSocket (server) {
-  let webSocketServer = new WebSocketServer({
-    server: server
-  })
+  const webSocketServer = io(server)
 
   webSocketServer.on('connection', socket => {
+    console.log('websocket connection success!')
     socket.on('sensor', data => {
       console.log('sensor data come!')
     })
