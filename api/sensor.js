@@ -18,8 +18,7 @@ function sensorDataSocket (server) {
     })
 
     socket.on('rollback', data => {
-      let sensorInstance = new SensorModel(data)
-      sensorInstance.deleteMany({
+      SensorModel.deleteMany({
         sampleId: data.sampleId,
         pin: data.pin
       }, err => {
