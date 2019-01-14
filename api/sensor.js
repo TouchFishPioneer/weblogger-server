@@ -1,6 +1,8 @@
 const io = require('socket.io')
-const SensorModel = require('../database/models/sensor')
 const log = require('../util/log')
+const uaParser = require('../util/ua')
+const SensorModel = require('../database/models/sensor')
+const StatusModel = require('../database/models/status')
 
 function sensorDataSocket (server) {
   const webSocketServer = io(server)
@@ -24,12 +26,23 @@ function sensorDataSocket (server) {
       }, err => {
         if (err) {
           log(3, 'Error occured when rolling back wrong data from database.')
+        } else {
+          log(1, `Wrong sensor recordings have been removed successfully. Pin: ${data.pin}, SampleID: ${data.sampleId}.`)
         }
       })
     })
 
-    socket.on('log-complete', () => {
+    socket.on('log-complete', data => {
       log(1, 'log complete!')
+      data.userAgent = uaParser(data.userAgent)
+      let statusInstance = new StatusModel(data)
+      statusInstance.save(err => {
+        if (err) {
+          log(3, 'Error occured when inserting new user information into database.')
+        } else {
+          log(1, `Log complete and user ${data.username}'s information has been recorded.`)
+        }
+      })
     })
   })
 }

@@ -12,7 +12,7 @@ function logParser (level, msg) {
       console.log(chalk.bgRed.black('[ ERROR ]') + ' ' + chalk.red(msg))
       break
     case 4:
-      console.log(chalk.bgBlue.black('[ INFO  ]') + ' ' + chalk.blue(msg))
+      console.log(chalk.bgBlue.black('[ INFOM ]') + ' ' + chalk.blue(msg))
       break
     default:
       console.log(chalk.bgWhite.black('[ OTHER ]') + ' ' + chalk.white(msg))
