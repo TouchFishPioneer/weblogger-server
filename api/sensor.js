@@ -14,7 +14,7 @@ function sensorDataSocket (server) {
       let sensorInstance = new SensorModel(data)
       sensorInstance.save(err => {
         if (err) {
-          log(3, 'Error occured when inserting new data into database.')
+          log(3, `Error occured when inserting new data into database. Error message: ${err}`)
         }
       })
     })
@@ -38,7 +38,7 @@ function sensorDataSocket (server) {
       let statusInstance = new StatusModel(data)
       statusInstance.save(err => {
         if (err) {
-          log(3, 'Error occured when inserting new user information into database.')
+          log(3, `Error occured when inserting new user information into database. Error message: ${err}`)
         } else {
           log(1, `Log complete and user ${data.username}'s information has been recorded.`)
         }
