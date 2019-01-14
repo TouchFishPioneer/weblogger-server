@@ -10,7 +10,7 @@ function sensorDataSocket (server) {
 
     socket.on('sensor', data => {
       let sensorInstance = new SensorModel(data)
-      sensorInstance.save((err, res) => {
+      sensorInstance.save(err => {
         if (err) {
           log(3, 'Error occured when inserting new data into database.')
         }
@@ -18,12 +18,18 @@ function sensorDataSocket (server) {
     })
 
     socket.on('rollback', data => {
-      console.log(`rollback:
-        sampleId: ${data.sampleId},
-        pin: ${data.pin}`)
+      let sensorInstance = new SensorModel(data)
+      sensorInstance.deleteMany({
+        sampleId: data.sampleId,
+        pin: data.pin
+      }, err => {
+        if (err) {
+          log(3, 'Error occured when rolling back wrong data from database.')
+        }
+      })
     })
 
-    socket.on('log-complete', data => {
+    socket.on('log-complete', () => {
       log(1, 'log complete!')
     })
   })
