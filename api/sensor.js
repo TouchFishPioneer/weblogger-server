@@ -6,11 +6,11 @@ function sensorDataSocket (server) {
   webSocketServer.on('connection', socket => {
     console.log('websocket connection success!')
     socket.on('sensor', data => {
-      console.log('sensor data come!')
+      console.log(`sensor: ${data}`)
     })
 
     socket.on('rollback', data => {
-      console.log('rollback instruction come!')
+      console.log(`rollback: ${data}`)
     })
 
     socket.on('log-complete', data => {
