@@ -1,14 +1,19 @@
 const io = require('socket.io')
+const SensorModel = require('../database/models/sensor')
 
 function sensorDataSocket (server) {
   const webSocketServer = io(server)
 
   webSocketServer.on('connection', socket => {
     console.log('websocket connection success!')
+
     socket.on('sensor', data => {
-      console.log(`sensor:
-        sampleid: ${data.sampleId},
-        pin: ${data.pin}`)
+      let sensorInstance = new SensorModel(data)
+      sensorInstance.save((err, res) => {
+        if (err) {
+          console.log('error occured during inserting new data.')
+        }
+      })
     })
 
     socket.on('rollback', data => {
