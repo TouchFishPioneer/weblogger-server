@@ -5,23 +5,18 @@ const statusSchema = new mongoose.Schema({
   pinsCount: Number,
   pinsLength: Number,
   userAgent: {
-    device: {
-      model: String,
-      type: String,
-      vender: String
-    },
-    os: {
-      name: String,
-      version: String
-    },
-    browser: {
-      name: String,
-      version: String
-    },
-    engine: {
-      name: String,
-      version: String
-    }
+    devicemodel: String,
+    devicetype: String,
+    devicevender: String,
+
+    osname: String,
+    osversion: String,
+
+    browsername: String,
+    browserversion: String,
+
+    enginename: String,
+    engineversion: String
   }
 })
 

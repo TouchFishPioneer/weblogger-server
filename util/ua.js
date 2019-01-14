@@ -5,23 +5,15 @@ function userAgentObject (userAgent) {
   parser.setUA(userAgent)
   let result = parser.getResult()
   let uaObject = {
-    device: {
-      model: result.device.model,
-      type: result.device.type,
-      vender: result.device.vendor
-    },
-    os: {
-      name: result.os.name,
-      version: result.os.version
-    },
-    browser: {
-      name: result.browser.name,
-      version: result.browser.version
-    },
-    engine: {
-      name: result.engine.name,
-      version: result.engine.version
-    }
+    devicemodel: result.device.model,
+    devicetype: result.device.type,
+    devicevender: result.device.vendor,
+    osname: result.os.name,
+    osversion: result.os.version,
+    browsername: result.browser.name,
+    browserversion: result.browser.version,
+    enginename: result.engine.name,
+    engineversion: result.engine.version
   }
 
   return uaObject
