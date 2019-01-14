@@ -18,13 +18,13 @@ let pin = new PinModel({
 
 PinModel.deleteMany({}, err => {
   if (err) {
-    log.logParser(3, `Error occurs in dropping old collection of pins, ${err}`)
+    log(3, `Error occurs in dropping old collection of pins, ${err}`)
   } else {
     pin.save((err, res) => {
       if (err) {
-        log.logParser(3, `Error occurs in insert new pins into database, ${err}`)
+        log(3, `Error occurs in insert new pins into database, ${err}`)
       } else {
-        log.logParser(1, `${res.pins.length} pins have been inserted into the database.`)
+        log(1, `${res.pins.length} pins have been inserted into the database.`)
         mongoose.disconnect()
       }
     })

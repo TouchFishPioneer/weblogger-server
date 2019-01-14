@@ -1,17 +1,18 @@
 const io = require('socket.io')
 const SensorModel = require('../database/models/sensor')
+const log = require('../util/log')
 
 function sensorDataSocket (server) {
   const webSocketServer = io(server)
 
   webSocketServer.on('connection', socket => {
-    console.log('websocket connection success!')
+    log(1, 'Websocket connection success!')
 
     socket.on('sensor', data => {
       let sensorInstance = new SensorModel(data)
       sensorInstance.save((err, res) => {
         if (err) {
-          console.log('error occured during inserting new data.')
+          log(3, 'Error occured when inserting new data into database.')
         }
       })
     })
@@ -23,7 +24,7 @@ function sensorDataSocket (server) {
     })
 
     socket.on('log-complete', data => {
-      console.log('log complete!')
+      log(1, 'log complete!')
     })
   })
 }

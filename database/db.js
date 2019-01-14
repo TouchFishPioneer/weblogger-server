@@ -6,20 +6,20 @@ const dbURL = `mongodb://${config.database.host}:${config.database.port}/${confi
 
 mongoose.connect(dbURL, { useNewUrlParser: true }, error => {
   if (error) {
-    log.logParser(3, `Database connection error! ${error}`)
+    log(3, `Database connection error! ${error}`)
   } else {
-    log.logParser(1, `Database connection success!`)
+    log(1, `Database connection success!`)
   }
 })
 
 mongoose.connection.on('connected', () => {
-  log.logParser(1, `MongoDB successfully connected.`)
+  log(1, `MongoDB successfully connected.`)
 })
 mongoose.connection.on('error', () => {
-  log.logParser(3, `MongoDB connection is in error.`)
+  log(3, `MongoDB connection is in error.`)
 })
 mongoose.connection.on('disconnected', () => {
-  log.logParser(2, `MongoDB database is disconnected.`)
+  log(2, `MongoDB database is disconnected.`)
 })
 
 module.exports = mongoose

@@ -1,6 +1,8 @@
+const log = require('./log')
+
 function getNRandomPins (n, k) {
   if ((n * k) % 10 !== 0) {
-    console.error('Invalid parameter! n should be divided by 10')
+    log(3, 'Invalid parameter! The amount of pins must be an integer that is divisible by 10.')
     return []
   }
   let numPerDigit = n * k / 10
@@ -78,7 +80,7 @@ function isArrayRepeat (arr) {
   let hash = {}
   for (let i = 0; i < arr.length; i++) {
     if (hash[arr[i]]) {
-      console.log(`arr has repeat element: ${arr[i]}`)
+      log(3, `arr has repeat element: ${arr[i]}`)
       return true
     }
     hash[arr[i]] = true
@@ -88,7 +90,7 @@ function isArrayRepeat (arr) {
 
 function getNumsFromSequence (sequence, k) {
   if (sequence.length % k !== 0) {
-    console.error(`Illegal sequence! ${sequence.length} can not divided by ${k}.`)
+    log(3, `Illegal sequence! ${sequence.length} can not divided by ${k}.`)
     return
   }
   let nums = []
