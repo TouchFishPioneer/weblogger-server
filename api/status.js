@@ -4,7 +4,14 @@ const StatusModel = require('../database/models/status')
 // GET /status
 // Request the information of users and devices
 router.get('/status', async (ctx, next) => {
-  const statusTest = StatusModel.aggregate([{ $group: { _id: '$userAgent.osname', num: { $sum: 1 } } }])
+  const statusTest = StatusModel.aggregate([{
+    $group: {
+      _id: '$userAgent.osname',
+      num: {
+        $sum: 1
+      }
+    }
+  }])
 
   ctx.response.type = 'json'
   ctx.response.body = {
