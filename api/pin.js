@@ -13,8 +13,6 @@ router.get('/pin', async (ctx, next) => {
       pins: pins[0].pins
     }
   }
-
-  await next()
 })
 
 module.exports = router

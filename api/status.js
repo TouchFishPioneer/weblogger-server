@@ -8,17 +8,11 @@ router.get('/status', async (ctx, next) => {
   StatusModel.aggregate([{
     $group: {
       _id: '$username',
-      num: {
-        $sum: 1
+      total: {
+        $sum: '$pinsCount'
       }
     }
-  }], (err, res) => {
-    if (err) {
-      console.log(err)
-    } else {
-      result = res
-    }
-  })
+  }])
 
   ctx.response.type = 'json'
   ctx.response.body = {
@@ -27,8 +21,6 @@ router.get('/status', async (ctx, next) => {
       result
     }
   }
-
-  await next()
 })
 
 module.exports = router
