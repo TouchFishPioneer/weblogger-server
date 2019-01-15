@@ -7,7 +7,7 @@ router.get('/status', async (ctx, next) => {
   let result
   StatusModel.aggregate([{
     $group: {
-      _id: '$userAgent.osname',
+      _id: '$username',
       num: {
         $sum: 1
       }
