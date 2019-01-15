@@ -1,6 +1,8 @@
 const router = require('koa-router')()
 const PinModel = require('../database/models/pins')
 
+// GET /pin
+// Request the pin array
 router.get('/pin', async (ctx, next) => {
   const pins = await PinModel.find()
 
@@ -11,6 +13,8 @@ router.get('/pin', async (ctx, next) => {
       pins: pins[0].pins
     }
   }
+
+  await next()
 })
 
 module.exports = router

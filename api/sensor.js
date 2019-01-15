@@ -4,12 +4,19 @@ const uaParser = require('../util/ua')
 const SensorModel = require('../database/models/sensor')
 const StatusModel = require('../database/models/status')
 
+/**
+ * Establish a websocket for sensor data transmission
+ * @param {Object} server A HTTP server
+ */
 function sensorDataSocket (server) {
   const webSocketServer = io(server)
 
+  // Connection establishment
   webSocketServer.on('connection', socket => {
     log(1, 'Websocket connection success!')
 
+    // Register sensor listener
+    // Receive sensor data
     socket.on('sensor', data => {
       let sensorInstance = new SensorModel(data)
       sensorInstance.save(err => {
@@ -19,6 +26,8 @@ function sensorDataSocket (server) {
       })
     })
 
+    // Register rollback listener
+    // Receive a signal to rollback specified database entry
     socket.on('rollback', data => {
       SensorModel.deleteMany({
         sampleId: data.sampleId,
@@ -32,8 +41,9 @@ function sensorDataSocket (server) {
       })
     })
 
+    // Register log complete listener
+    // Record the information of users and devices
     socket.on('log-complete', data => {
-      log(1, 'log complete!')
       data.userAgent = uaParser(data.userAgent)
       let statusInstance = new StatusModel(data)
       statusInstance.save(err => {

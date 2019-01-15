@@ -1,5 +1,6 @@
 const mongoose = require('../db')
 
+// Schema and model of collection status
 const statusSchema = new mongoose.Schema({
   username: String,
   pinsCount: Number,

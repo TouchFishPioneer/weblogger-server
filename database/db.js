@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const config = require('../config/config')
 const log = require('../util/log')
-
 const dbURL = `mongodb://${config.database.host}:${config.database.port}/${config.database.dbname}`
 
+// Database initialization and connection establishment
 mongoose.connect(dbURL, { useNewUrlParser: true }, error => {
   if (error) {
     log(3, `Database connection error! ${error}`)

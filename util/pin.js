@@ -1,5 +1,14 @@
 const log = require('./log')
 
+// Generate valid pin array, which satisfies the uniform distribution
+function getValidPins (n, k) {
+  let pins = getNRandomPins(n, k)
+  while (!isPinValid(pins, k)) {
+    pins = getNRandomPins(n, k)
+  }
+  return pins
+}
+
 function getNRandomPins (n, k) {
   if ((n * k) % 10 !== 0) {
     log(3, 'Invalid parameter! The amount of pins must be an integer that is divisible by 10.')
@@ -10,14 +19,6 @@ function getNRandomPins (n, k) {
   let sequence = permutation(digitSequence)
   let nums = getNumsFromSequence(sequence, k)
   return getPinsFromNums(nums, k)
-}
-
-function getValidPins (n, k) {
-  let pins = getNRandomPins(n, k)
-  while (!isPinValid(pins, k)) {
-    pins = getNRandomPins(n, k)
-  }
-  return pins
 }
 
 function isPinValid (pins, k) {

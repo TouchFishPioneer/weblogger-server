@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 
+// Unify the style of logs
 function logParser (level, msg) {
   switch (level) {
     case 1:

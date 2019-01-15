@@ -1,5 +1,6 @@
 const Uaparser = require('ua-parser-js')
 
+// Parse the useragent strings into objects
 function userAgentObject (userAgent) {
   let parser = new Uaparser()
   parser.setUA(userAgent)

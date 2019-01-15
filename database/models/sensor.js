@@ -1,5 +1,6 @@
 const mongoose = require('../db')
 
+// Schema and model of collection sensor
 const sensorSchema = new mongoose.Schema({
   username: String,
   sampleId: String,
