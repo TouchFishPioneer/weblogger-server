@@ -9,19 +9,19 @@ router.get('/status', async (ctx, next) => {
   let engineName
 
   await StatusModel.aggregate([
-    { $group: { _id: '$userAgent.osname', total: { $sum: 1 } } }
+    { $group: { _id: '$userAgent.osname', name: '$userAgent.osname', value: { $sum: '$pinsCount' } } }
   ]).then((res) => {
     osName = res
   })
 
   await StatusModel.aggregate([
-    { $group: { _id: '$userAgent.devicevender', total: { $sum: 1 } } }
+    { $group: { _id: '$userAgent.devicevender', name: '$userAgent.devicevender', total: { $sum: '$pinsCount' } } }
   ]).then((res) => {
     deviceVender = res
   })
 
   await StatusModel.aggregate([
-    { $group: { _id: '$userAgent.enginename', total: { $sum: 1 } } }
+    { $group: { _id: '$userAgent.enginename', name: '$userAgent.enginename', total: { $sum: '$pinsCount' } } }
   ]).then((res) => {
     engineName = res
   })
