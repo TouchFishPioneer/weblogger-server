@@ -21,7 +21,7 @@ ua-parser-js:   ^0.7.19
 ## Build and Deployment
 - Node and npm needed
 - MongoDB needed
-- Run command followed to start the server
+- Run the following command to start the server
     ```
     $ git clone git@github.com:wurahara/weblogger-server.git
     $ npm install
