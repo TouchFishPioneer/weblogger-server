@@ -21,13 +21,36 @@ ua-parser-js:   ^0.7.19
 ## Build and Deployment
 - Node and npm needed
 - MongoDB needed
-- Run the following command to start the server
-    ```
+- Download this repository to your own device
+    ```bash
     $ git clone git@github.com:wurahara/weblogger-server.git
+    $ cd weblogger-server
+    ```
+- Configure the server and database parameters by modifying `/config/config.js`
+    ```JavaScript
+    module.exports = {
+        port: process.env.PORT || 1120,
+        database: {
+            host: 'your database host',
+            port: 'your database port',
+            dbname: 'the name of this database'
+        }
+    }
+    ```
+- Configure your mongoDB database corresponding to the settings above
+- Install all the dependencies needed
+    ```bash
     $ npm install
+    ```
+- Initialize your database and insert the PIN sequence to build the Pin collection
+    ```bash
+    $ npm run initdb [pinAmount] [pinLength]
+    ```
+- Run the following command to start the server
+    ```bash
     $ npm run start
     ```
-- the server will be executed at port 1120
+- The server will be started and continuously listening to port `1120` by default
 
 ## Acknowledgement
 

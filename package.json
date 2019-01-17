@@ -1,6 +1,6 @@
 {
   "name": "web-logger-server",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "The server for WebLogger.",
   "main": "index.js",
   "scripts": {

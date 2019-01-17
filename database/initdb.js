@@ -14,7 +14,7 @@ if (process.argv.length === 4) {
 }
 let pinArray = pinGenerator.getValidPins(N, K)
 
-// Inialize the collection of pins in database
+// Initialize the collection of pins in database
 PinModel.deleteMany({}, err => {
   if (err) {
     log(3, `Error occurs in dropping old collection of pins, ${err}`)
