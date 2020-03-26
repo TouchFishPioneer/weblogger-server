@@ -1,11 +1,11 @@
 const Uaparser = require('ua-parser-js')
 
-// Parse the useragent strings into objects
+// Parse the user-agent strings into objects
 function userAgentObject (userAgent) {
-  let parser = new Uaparser()
+  const parser = new Uaparser()
   parser.setUA(userAgent)
-  let result = parser.getResult()
-  let uaObject = {
+  const result = parser.getResult()
+  const uaObject = {
     devicemodel: result.device.model,
     devicetype: result.device.type,
     devicevender: result.device.vendor,

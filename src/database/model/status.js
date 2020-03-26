@@ -1,7 +1,7 @@
-const mongoose = require('../db')
+const database = require('../db')
 
 // Schema and model of collection status
-const statusSchema = new mongoose.Schema({
+const statusSchema = new database.Schema({
   username: String,
   pinsCount: Number,
   pinsLength: Number,
@@ -21,4 +21,4 @@ const statusSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Status', statusSchema, 'status')
+module.exports = database.model('Status', statusSchema, 'status')

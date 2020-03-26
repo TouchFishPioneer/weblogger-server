@@ -1,7 +1,7 @@
 module.exports = {
   port: process.env.PORT || 1120,
   database: {
-    host: '127.0.0.1',
+    host: '47.101.33.187',
     port: '27017',
     dbname: 'weblogger'
   }

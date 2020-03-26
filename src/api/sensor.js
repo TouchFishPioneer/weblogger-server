@@ -1,12 +1,12 @@
 const io = require('socket.io')
-const log = require('../util/log')
-const uaParser = require('../util/ua')
-const SensorModel = require('../database/models/sensor')
-const StatusModel = require('../database/models/status')
+const log = require('../utils/log')
+const uaParser = require('../utils/ua')
+const SensorModel = require('../database/model/sensor')
+const StatusModel = require('../database/model/status')
 
 /**
  * Establish a websocket for sensor data transmission
- * @param {Object} server A HTTP server
+ * @param server A HTTP server
  */
 function sensorDataSocket (server) {
   const webSocketServer = io(server)
@@ -18,7 +18,7 @@ function sensorDataSocket (server) {
     // Register sensor listener
     // Receive sensor data
     socket.on('sensor', data => {
-      let sensorInstance = new SensorModel(data)
+      const sensorInstance = new SensorModel(data)
       sensorInstance.save(err => {
         if (err) {
           log(3, `Error occured when inserting new data into database. Error message: ${err}`)
@@ -45,7 +45,7 @@ function sensorDataSocket (server) {
     // Record the information of users and devices
     socket.on('log-complete', data => {
       data.userAgent = uaParser(data.userAgent)
-      let statusInstance = new StatusModel(data)
+      const statusInstance = new StatusModel(data)
       statusInstance.save(err => {
         if (err) {
           log(3, `Error occured when inserting new user information into database. Error message: ${err}`)

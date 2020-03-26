@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const PinModel = require('../database/models/pins')
+const PinModel = require('../database/model/pin')
 
 // GET /pin
 // Request the pin array

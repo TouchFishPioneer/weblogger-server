@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const StatusModel = require('../database/models/status')
+const StatusModel = require('../database/model/status')
 
 // GET /status
 // Request the information of users and devices

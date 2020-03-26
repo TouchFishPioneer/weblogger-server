@@ -1,7 +1,7 @@
-const mongoose = require('../db')
+const database = require('../db')
 
 // Schema and model of collection sensor
-const sensorSchema = new mongoose.Schema({
+const sensorSchema = new database.Schema({
   username: String,
   sampleId: String,
   pin: String,
@@ -28,4 +28,4 @@ const sensorSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Sensor', sensorSchema, 'sensor')
+module.exports = database.model('Sensor', sensorSchema, 'sensor')

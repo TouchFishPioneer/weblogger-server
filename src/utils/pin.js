@@ -14,22 +14,22 @@ function getNRandomPins (n, k) {
     log(3, 'Invalid parameter! The amount of pins must be an integer that is divisible by 10.')
     return []
   }
-  let numPerDigit = n * k / 10
-  let digitSequence = getDigitSequence(numPerDigit)
-  let sequence = permutation(digitSequence)
-  let nums = getNumsFromSequence(sequence, k)
+  const numPerDigit = n * k / 10
+  const digitSequence = getDigitSequence(numPerDigit)
+  const sequence = permutation(digitSequence)
+  const nums = getNumsFromSequence(sequence, k)
   return getPinsFromNums(nums, k)
 }
 
 function isPinValid (pins, k) {
-  let nums = pins.map((pin) => {
+  const nums = pins.map((pin) => {
     return Number(pin)
   })
   if (k > 1 && isArrayRepeat(nums)) {
     return false
   }
 
-  let map = {}
+  const map = {}
   pins.forEach((pin) => {
     for (let i = 0; i < pin.length; i++) {
       if (map[pin[i]] === undefined) {
@@ -39,9 +39,9 @@ function isPinValid (pins, k) {
     }
   })
 
-  let nDigit = pins.length * k / 10
-  for (let index in map) {
-    if (map.hasOwnProperty(index)) {
+  const nDigit = pins.length * k / 10
+  for (const index in map) {
+    if (Object.prototype.hasOwnProperty.call(map, index)) {
       if (map[index] !== nDigit) {
         console.log(`map[${index}] = ${map[index]}`)
         return false
@@ -52,7 +52,7 @@ function isPinValid (pins, k) {
 }
 
 function getDigitSequence (numPerDigit) {
-  let s = []
+  const s = []
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < numPerDigit; j++) {
       s.push(i)
@@ -63,8 +63,8 @@ function getDigitSequence (numPerDigit) {
 
 function permutation (sequence) {
   for (let i = 1; i < sequence.length; i++) {
-    let j = getRandomIntInclusive(0, i)
-    let tmp = sequence[i]
+    const j = getRandomIntInclusive(0, i)
+    const tmp = sequence[i]
     sequence[i] = sequence[j]
     sequence[j] = tmp
   }
@@ -78,10 +78,10 @@ function getPinsFromNums (nums, k) {
 }
 
 function isArrayRepeat (arr) {
-  let hash = {}
+  const hash = {}
   for (let i = 0; i < arr.length; i++) {
     if (hash[arr[i]]) {
-      log(3, `arr has repeat element: ${arr[i]}`)
+      log(2, `arr has repeat element: ${arr[i]}`)
       return true
     }
     hash[arr[i]] = true
@@ -94,7 +94,7 @@ function getNumsFromSequence (sequence, k) {
     log(3, `Illegal sequence! ${sequence.length} can not divided by ${k}.`)
     return
   }
-  let nums = []
+  const nums = []
   while (sequence.length) {
     nums.push(arr2num(sequence.splice(0, k)))
   }

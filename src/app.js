@@ -1,26 +1,28 @@
 const Koa = require('koa')
 const app = new Koa()
 const cors = require('koa2-cors')
-const config = require('./config/config')
-const log = require('./util/log')
-const pinRoute = require('./api/pin')
-const sensorRoute = require('./api/sensor')
-const statusRoute = require('./api/status')
 
-// Configures the Access-Control-Allow-Origin CORS header
+const config = require('./config/config')
+const log = require('./utils/log')
+
+const pinRoute = require('./api/pin')
+const statusRoute = require('./api/status')
+const sensorRoute = require('./api/sensor')
+
+// Configure the Access-Control-Allow-Origin CORS header
 app.use(cors())
 
 // Log the API request
 app.use(async (ctx, next) => {
-  log(4, `Process ${ctx.request.method} ${ctx.request.url}...`)
+  log(4, `Request ${ctx.request.method} ${ctx.request.url} from ${ctx.request.ip}`)
   await next()
 })
 
 // Register routing events
 app.use(pinRoute.routes())
 app.use(statusRoute.routes())
-let server = app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   sensorRoute(server)
 })
 
-log(4, `Demo running at port ${config.port}`)
+log(4, `Server running at port ${config.port}`)
